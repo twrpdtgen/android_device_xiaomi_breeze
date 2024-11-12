@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "breeze-user-12-SKQ1.231127.001-V816.0.10.0.UNUINXM-release-keys" ]
+  pull_request:
+    branches: [ "breeze-user-12-SKQ1.231127.001-V816.0.10.0.UNUINXM-release-keys" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: configure
+      run: ./configure
+
+    - name: Install dependencies
+      run: make
+
+    - name: Run check
+      run: make check
+
+    - name: Run distcheck
+      run: make distcheck
